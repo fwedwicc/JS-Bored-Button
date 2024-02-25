@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .modal button {
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    #randomNumberContainer {
+      position: relative;
+      font-size: 24px;
+      animation: spin 0.1s infinite linear;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <title>Guessing Game</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Guess the Number Game</h1>
+    <p id="message">Guess a number between 1 and 100:</p>
+    <p id="result"></p>
+    <div id="randomNumberContainer">
+      <p id="randomNumber"></p>
+    </div>
+    <input type="number" id="guessInput" placeholder="Enter your guess">
+    <button onclick="checkGuess()">Submit Guess</button>
+  </div>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <p id="modalMessage"></p>
+      <button onclick="closeModal()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    // Function to generate a random number with rotation effect
+    function generateRandomNumber() {
+      const randomNumberElement = document.getElementById('randomNumber');
+      const newNumber = Math.floor(Math.random() * 100) + 1;
+
+      // Stop the rotation during number change
+      randomNumberElement.style.animation = 'none';
+
+      // Update the number
+      randomNumberElement.textContent = newNumber;
+
+      // Restart the rotation after a short delay
+      setTimeout(() => {
+        randomNumberElement.style.animation = 'spin 5s infinite linear';
+      }, 100);
+
+      return newNumber;
+    }
+
+    // Generate the initial random number
+    let secretNumber = generateRandomNumber();
+
+    // Function to check the guessed number
+    function checkGuess() {
+      // Get the guessed number from the input field
+      let userGuess = document.getElementById('guessInput').value;
+
+      // Check if the guess is correct
+      if (userGuess == secretNumber) {
+        setResultMessage('Congratulations! You guessed the correct number.');
+        openModal();
+      } else {
+        setMessage('Wrong guess. Try again.');
+        // Generate a new random number for the next attempt
+        secretNumber = generateRandomNumber();
+      }
+    }
+
+    // Function to set the message displayed to the user
+    function setMessage(message) {
+      document.getElementById('message').textContent = message;
+    }
+
+    // Function to set the congratulation message
+    function setResultMessage(message) {
+      document.getElementById('result').textContent = message;
+      document.getElementById('modalMessage').textContent = message;
+    }
+
+    // Function to open the modal
+    function openModal() {
+      document.getElementById('myModal').style.display = 'flex';
+    }
+
+    // Function to close the modal and reset the game
+    function closeModal() {
+      document.getElementById('myModal').style.display = 'none';
+      // Clear the input field
+      document.getElementById('guessInput').value = '';
+      // Generate a new random number for the next game
+      secretNumber = generateRandomNumber();
+      // Set a new message for the next game
+      setMessage('Guess a number between 1 and 3:');
+      // Clear the result message
+      setResultMessage('');
+    }
+
+    // Close the modal if the user clicks outside of it
+    window.onclick = function (event) {
+      if (event.target == document.getElementById('myModal')) {
+        closeModal();
+      }
+    }
+  </script>
+</body>
+
+</html>
