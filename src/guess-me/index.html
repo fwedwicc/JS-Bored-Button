@@ -29,6 +29,7 @@
       -webkit-user-select: none;
       touch-action: manipulation;
       transition: box-shadow 0.3s ease, top 0.3s ease, left 0.3s ease;
+      margin-top: 2rem;
     }
 
     .guess-button:active {
@@ -39,7 +40,6 @@
 
     #container {
       text-align: center;
-      border: solid 1px #000;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -47,12 +47,37 @@
     }
 
     #counter {
-      font-size: 10rem;
+      font-size: 13rem;
       margin-bottom: 20px;
       font-family: "Oswald", sans-serif;
       font-optical-sizing: auto;
       font-weight: 700;
       font-style: normal;
+    }
+
+    #guessInput {
+      height: 1.8rem;
+      border: solid;
+      text-align: center;
+      /* Center the text horizontally */
+      line-height: 1.8rem;
+      /* Center the text vertically */
+      -moz-appearance: textfield;
+      /* For Firefox */
+      appearance: textfield;
+      /* Disable increment/decrement buttons in most browsers */
+      /* Hide the number input spinners for Webkit browsers (Chrome, Safari) */
+      -webkit-appearance: none;
+      margin: 0;
+      /* Remove the default margin */
+    }
+
+    #guessInput::-webkit-inner-spin-button,
+    #guessInput::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      /* Hide the inner and outer spin buttons */
+      margin: 0;
+      /* Remove the default margin */
     }
   </style>
   <title>Guess Me</title>
@@ -86,7 +111,8 @@
       stopCounting();
 
       // Get user's guess
-      const guessedNumber = parseInt(document.getElementById('guessInput').value, 10);
+      const guessInput = document.getElementById('guessInput');
+      const guessedNumber = parseInt(guessInput.value, 10);
 
       // Display the correct number immediately
       document.getElementById('counter').textContent = secretNumber;
@@ -97,6 +123,9 @@
       } else {
         alert(`Sorry, the correct number was ${secretNumber}. Try again!`);
       }
+
+      // Clear the input field
+      guessInput.value = '';
 
       // Generate a new secret number for the next round
       secretNumber = Math.floor(Math.random() * 100) + 1;
