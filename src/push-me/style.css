@@ -71,8 +71,3 @@ body {
   top: 5px;
   left: 5px;
 }
-@media (min-width: 768px) {
-  .push-button {
-    padding: 0.25em 0.75em;
-  }
-}

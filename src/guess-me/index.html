@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,25 +14,59 @@
       font-family: 'Arial', sans-serif;
     }
 
-    #counter {
-      font-size: 2em;
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 10px;
+    .guess-button {
+      font-size: 30px;
+      letter-spacing: 2px;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: #000;
+      cursor: pointer;
+      border: 4px solid;
+      padding: 1rem 2rem;
+      box-shadow: 10px 10px 0px 0px, 10px 10px 0px 0px, 10px 10px 0px 0px, 10px 10px 0px 0px, 10px 10px 0px 0px;
+      position: relative;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      transition: box-shadow 0.3s ease, top 0.3s ease, left 0.3s ease;
     }
 
-    #guessInput {
-      margin-right: 10px;
+    .guess-button:active {
+      box-shadow: 0px 0px 0px 0px;
+      top: 5px;
+      left: 5px;
+    }
+
+    #container {
+      text-align: center;
+      border: solid 1px #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #counter {
+      font-size: 10rem;
+      margin-bottom: 20px;
+      font-family: "Oswald", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 700;
+      font-style: normal;
     }
   </style>
-  <title>Guessing Game</title>
+  <title>Guess Me</title>
 </head>
+
 <body>
-  <div>
-    <label for="guessInput">Enter your guess:</label>
-    <input type="number" id="guessInput" min="1" max="100">
-    <button onclick="submitGuess()">Submit Guess</button>
+  <div id="container">
+    <!-- Counter -->
     <div id="counter">0</div>
+    <!--  Guess Input Field -->
+    <label for="guessInput">Enter your guess:</label><br>
+    <input type="number" id="guessInput" min="1" max="100"><br>
+    <button onclick="submitGuess()" class="guess-button">Guess</button>
+
   </div>
 
   <script>
@@ -53,7 +88,7 @@
       // Get user's guess
       const guessedNumber = parseInt(document.getElementById('guessInput').value, 10);
 
-      // Display the secret number immediately
+      // Display the correct number immediately
       document.getElementById('counter').textContent = secretNumber;
 
       // Check if the guess is correct
@@ -76,6 +111,11 @@
       const currentNumber = parseInt(counterElement.textContent, 10);
       const randomIncrement = Math.floor(Math.random() * 3) + 1; // Random increment between 1 and 3
 
+      // Stop counting if the current number reaches the guessed number
+      if (currentNumber === secretNumber) {
+        stopCounting();
+      }
+
       // Randomly increment or decrement the counter
       const newNumber = Math.random() < 0.5 ? currentNumber + randomIncrement : currentNumber - randomIncrement;
 
@@ -90,4 +130,5 @@
     startCounting();
   </script>
 </body>
+
 </html>
