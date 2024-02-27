@@ -19,10 +19,11 @@
   </div>
 
   <!-- Modal for winning -->
-  <div id="myModal">
-    <div id="modalContent">
+  <div id="myModal" class="modal">
+    <div id="modalContent" class="modal-content">
+      <button class="close-btn" id="closeModalBtn" onclick="closeModal()">&times;</button><br><br>
+      <!-- <span class="close-btn" onclick="closeModal()">&times;</span><br><br><br> -->
       <p>Congratulations! You guessed the correct number.</p>
-      <button id="closeModalBtn" onclick="closeModal()">Close</button>
     </div>
   </div>
 <script src="guess-me-script.js"></script>
