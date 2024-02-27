@@ -13,7 +13,6 @@
       margin: 0;
       font-family: 'Arial', sans-serif;
     }
-
     .guess-button {
       font-size: 30px;
       letter-spacing: 2px;
@@ -79,6 +78,25 @@
       margin: 0;
       /* Remove the default margin */
     }
+    #myModal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: #fff;
+      border: 2px solid #000;
+      z-index: 1;
+    }
+
+    #modalContent {
+      text-align: center;
+    }
+
+    #closeModalBtn {
+      cursor: pointer;
+    }
   </style>
   <title>Guess Me</title>
 </head>
@@ -91,7 +109,14 @@
     <label for="guessInput">Enter your guess:</label><br>
     <input type="number" id="guessInput" min="1" max="100"><br>
     <button onclick="submitGuess()" class="guess-button">Guess</button>
+  </div>
 
+  <!-- Modal for winning -->
+  <div id="myModal">
+    <div id="modalContent">
+      <p>Congratulations! You guessed the correct number.</p>
+      <button id="closeModalBtn" onclick="closeModal()">Close</button>
+    </div>
   </div>
 
   <script>
@@ -104,6 +129,14 @@
 
     function stopCounting() {
       clearInterval(countingInterval);
+    }
+
+    function openModal() {
+      document.getElementById('myModal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('myModal').style.display = 'none';
     }
 
     function submitGuess() {
@@ -119,7 +152,7 @@
 
       // Check if the guess is correct
       if (guessedNumber === secretNumber) {
-        alert('Congratulations! You guessed the correct number.');
+        openModal(); // Show the modal
       } else {
         alert(`Sorry, the correct number was ${secretNumber}. Try again!`);
       }
