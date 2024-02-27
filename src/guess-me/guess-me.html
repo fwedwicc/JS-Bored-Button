@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="guess-me-style.css">
+  <link rel="stylesheet" href="../paper.css">
   <title>Guess Me</title>
 </head>
 
@@ -20,13 +21,12 @@
 
   <!-- Modal for winning -->
   <div id="myModal" class="modal">
-    <div id="modalContent" class="modal-content">
-      <button class="close-btn" id="closeModalBtn" onclick="closeModal()">&times;</button><br><br>
-      <!-- <span class="close-btn" onclick="closeModal()">&times;</span><br><br><br> -->
+    <div id="modalContent">
       <p>Congratulations! You guessed the correct number.</p>
+      <button id="closeModalBtn" onclick="closeModal()">Close</button>
     </div>
   </div>
-<script src="guess-me-script.js"></script>
+  <script src="guess-me-script.js"></script>
 </body>
 
 </html>
