@@ -4,29 +4,8 @@ body {
   justify-content: center;
   height: 100vh;
   margin: 0;
-  font-family: 'Arial', sans-serif;
 }
-.guess-button {
-  font-size: 30px;
-  letter-spacing: 2px;
-  text-decoration: none;
-  text-transform: uppercase;
-  cursor: pointer;
-  border: 4px solid;
-  padding: 1rem 2rem;
-  box-shadow: 2px 2px 0px 0px, 4px 4px 0px 0px, 6px 6px 0px 0px, 8px 8px 0px 0px, 10px 10px 0px 0px;
-  position: relative;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  transition: box-shadow 0.3s ease, top 0.3s ease, left 0.3s ease;
-  margin-top: 2rem;
-}
-.guess-button:active {
-  box-shadow: 0px 0px 0px 0px;
-  top: 5px;
-  left: 5px;
-}
+
 #container {
   text-align: center;
   display: flex;
@@ -34,14 +13,15 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 #counter {
   font-size: 13rem;
   margin-bottom: 20px;
-  font-family: "Oswald", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
 }
+
 #guessInput {
   height: 1.8rem;
   border: solid;
@@ -52,11 +32,14 @@ body {
   -webkit-appearance: none;
   margin: 0;
 }
+
 #guessInput::-webkit-inner-spin-button,
 #guessInput::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+/* New styles for the modal */
 #myModal {
   display: none;
   position: fixed;
@@ -68,9 +51,36 @@ body {
   border: 2px solid #000;
   z-index: 1;
 }
+
 #modalContent {
   text-align: center;
 }
+
 #closeModalBtn {
   cursor: pointer;
+}
+
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 1;
+}
+
+#myModal.show-modal {
+  display: block;
+}
+
+/* Additional styles for the grayed-out background when the modal is open */
+#container.modal-open {
+  filter: blur(2px); /* Add a slight blur effect to the main content */
+  pointer-events: none; /* Allow clicks to pass through the overlay to the content underneath */
+}
+
+#container.modal-open #overlay {
+  display: block;
 }

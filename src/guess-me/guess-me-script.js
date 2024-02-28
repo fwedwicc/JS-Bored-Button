@@ -1,3 +1,5 @@
+
+// Your existing JavaScript code here
 let secretNumber;
 let countingInterval;
 
@@ -10,11 +12,13 @@ function stopCounting() {
 }
 
 function openModal() {
-  document.getElementById('myModal').style.display = 'block';
+  document.getElementById('myModal').classList.add('show-modal');
+  document.getElementById('container').classList.add('modal-open');
 }
 
 function closeModal() {
-  document.getElementById('myModal').style.display = 'none';
+  document.getElementById('myModal').classList.remove('show-modal');
+  document.getElementById('container').classList.remove('modal-open');
 }
 
 function submitGuess() {
@@ -45,7 +49,6 @@ function submitGuess() {
   document.getElementById('counter').textContent = '0';
   startCounting();
 }
-
 function updateCounter() {
   const counterElement = document.getElementById('counter');
   const currentNumber = parseInt(counterElement.textContent, 10);
@@ -68,3 +71,4 @@ secretNumber = Math.floor(Math.random() * 100) + 1;
 
 // Start counting animation for the first round
 startCounting();
+console.log(secretNumber);

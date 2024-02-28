@@ -4,29 +4,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="guess-me-style.css">
+  <link rel="stylesheet" href="./guess-me-style.css">
   <link rel="stylesheet" href="../paper.css">
   <title>Guess Me</title>
 </head>
 
 <body>
+  <div id="overlay"></div>
   <div id="container">
     <!-- Counter -->
     <div id="counter">0</div>
     <!--  Guess Input Field -->
     <label for="guessInput">Enter your guess:</label><br>
     <input type="number" id="guessInput" min="1" max="100"><br>
-    <button onclick="submitGuess()" class="guess-button">Guess</button>
+    <button onclick="submitGuess()" class="btn-large">Guess</button>
   </div>
 
   <!-- Modal for winning -->
-  <div id="myModal" class="modal">
+  <div id="myModal" class="sm-3 col border border-primary">
     <div id="modalContent">
       <p>Congratulations! You guessed the correct number.</p>
-      <button id="closeModalBtn" onclick="closeModal()">Close</button>
+      <button id="closeModalBtn" onclick="closeModal()">Get my price</button>
     </div>
   </div>
-  <script src="guess-me-script.js"></script>
+
+  <script src="./guess-me-script.js"></script>
 </body>
 
 </html>
