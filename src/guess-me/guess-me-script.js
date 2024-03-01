@@ -71,4 +71,3 @@ secretNumber = Math.floor(Math.random() * 100) + 1;
 
 // Start counting animation for the first round
 startCounting();
-console.log(secretNumber);

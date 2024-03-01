@@ -26,7 +26,7 @@ function updateHighestScore() {
 
 function startGame() {
   startTime = new Date().getTime();
-  document.getElementById('startButton').innerText = 'push';
+  document.getElementById('startButton').innerText = 'Push';
   timerInterval = setInterval(function () {
     elapsedTime = new Date().getTime() - startTime;
     updateTimer();
@@ -38,7 +38,7 @@ function startGame() {
 
 function endGame() {
   clearInterval(timerInterval);
-  document.getElementById('startButton').innerText = 'push';
+  document.getElementById('startButton').innerText = 'Push';
   openModal();
   const heldTime = (elapsedTime / 1000).toFixed(3);
   document.getElementById('duration').innerText = formatTime(elapsedTime);

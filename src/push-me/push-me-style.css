@@ -5,7 +5,7 @@ body {
   height: 100vh;
   margin: 0;
 }
-#game-container {
+#container {
   text-align: center;
 }
 #timer {
@@ -34,28 +34,4 @@ body {
 
 #closeModalBtn {
   cursor: pointer;
-}
-
-#overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: none;
-  z-index: 1;
-}
-
-#myModal.show-modal {
-  display: block;
-}
-
-/* Additional styles for the grayed-out background when the modal is open */
-#container.modal-open {
-  filter: blur(2px); /* Add a slight blur effect to the main content */
-  pointer-events: none; /* Allow clicks to pass through the overlay to the content underneath */
-}
-
-#container.modal-open #overlay {
-  display: block;
 }
