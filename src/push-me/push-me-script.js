@@ -62,6 +62,7 @@ function openModal() {
   setTimeout(() => {
     modal.classList.add('show');
   }, 50);
+  document.getElementById('blurredBackdrop').style.display = 'block';
 }
 
 function closeModal() {
@@ -70,6 +71,7 @@ function closeModal() {
   setTimeout(() => {
     modal.style.display = 'none';
   }, 500);
+  document.getElementById('blurredBackdrop').style.display = 'none';
 }
 
 // Display initial highest score
