@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Click Counter Game</title>
+  <style>
+    body {
+      text-align: center;
+      margin-top: 50px;
+    }
+    #counter {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    #incrementButton {
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    #winModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    #playAgainButton {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="counter">Counter: 0</div>
+  <button id="incrementButton">Click me</button>
+
+  <div id="winModal">
+    <div class="modal-content">
+      <p>Congratulations! You've won the game!</p>
+      <button id="playAgainButton">Play Again</button>
+    </div>
+  </div>
+
+  <script>
+    const counterElement = document.getElementById('counter');
+    const incrementButton = document.getElementById('incrementButton');
+    const winModal = document.getElementById('winModal');
+    const playAgainButton = document.getElementById('playAgainButton');
+
+    let counter = localStorage.getItem('counter') || 0;
+
+    function updateCounter() {
+      counter++;
+      counterElement.textContent = `Counter: ${counter}`;
+      localStorage.setItem('counter', counter);
+
+      if (counter === 20) {
+        showWinModal();
+      }
+    }
+
+    function showWinModal() {
+      winModal.style.display = 'flex';
+    }
+
+    function hideWinModal() {
+      winModal.style.display = 'none';
+    }
+
+    function playAgain() {
+      localStorage.removeItem('counter');
+      counter = 0;
+      counterElement.textContent = `Counter: ${counter}`;
+      hideWinModal();
+    }
+
+    incrementButton.addEventListener('click', updateCounter);
+    playAgainButton.addEventListener('click', playAgain);
+
+    // Reset the counter on page reload
+    window.addEventListener('beforeunload', () => {
+      localStorage.removeItem('counter');
+    });
+  </script>
+
+</body>
+</html>
